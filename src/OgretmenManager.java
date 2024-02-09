@@ -118,7 +118,7 @@ public class OgretmenManager extends Veritabani {
         System.out.print("doğum yılı: ");String dYili= scanStr.nextLine();
         System.out.print("branşı: ");String brans= scanStr.nextLine();
 
-        String ogretmenBilgileri = TcNo +", " +  ad + ", " +soyad + ", " + dYili + "," + brans;
+        String ogretmenBilgileri = ad + ", " +soyad + ", " + dYili + "," + brans;
         ogretmenlerMap.put(TcNo, ogretmenBilgileri);
 
     }

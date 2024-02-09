@@ -25,6 +25,8 @@ public class OgrenciManager extends Veritabani {
                             "\t   5- Kimlik No Ile Kayit Silme \t\n" +
                             "\t   A- ANAMENU\n" +
                             "\t   Q- CIKIS");
+
+            System.out.println("Lütfen menüden tercihinizi yapınız: ");
             secim = scan.nextLine().toLowerCase();
             switch (secim) {
                 case "1":
