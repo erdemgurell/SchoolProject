@@ -62,10 +62,10 @@ public class OgretmenManager extends Veritabani {
                     break;
 
                 //   "a" VEYA "A": // Ana Menü Metodu Çağrılabilmeli
-                case "A":
+                case "a":
                     Helper.anaMenu();
                     break;
-                case "Q":
+                case "q":
                     System.out.println("Çıkış yapılıyor...");
                     break;
                 //   "q" VEYA "Q": // Çıkış yapılabilmeli
