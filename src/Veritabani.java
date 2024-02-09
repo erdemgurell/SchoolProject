@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Veritabani {
-
     // TODO BU SINIFTA BİRŞEY DEĞİŞTİRMENİZE GEREK YOK.
     //  PROGRAM BAŞLAR BAŞLAMAZ, AŞAĞIDAKİ METODLAR, main METODU İÇEREN CLASS'TA ÇALIŞACAK,
     //  BÖYLECE AŞAĞIDAKİ ÖĞRENCİLER ÖĞRENCİ LİSTESİNE; ÖĞRETMENLER ÖĞRETMEN LİSTESİNE EKLENMİŞ OLACAKTIR.

@@ -1,18 +1,20 @@
 
 
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class OgrenciManager extends Veritabani {
 
     static Scanner scan = new Scanner(System.in);
 
     public static void ogrenciMenu() throws InterruptedException {
-
+        String secim;
         // TODO  Bu menunun calismasi icin gerekli duzenlemeleri yapiniz
 
-        //do while döngüde kalmayı sağlar, switch veya if menülere yönlenmeyi sağlar...
 
-        {
+        //do while döngüde kalmayı sağlar, switch veya if menülere yönlenmeyi sağlar...
+        do {
             System.out.println(
                     "\n============= TECHNO STUDY BOOTCAMP =============\n" +
                             "================== OGRENCI MENU =================\n" +
@@ -23,34 +25,35 @@ public class OgrenciManager extends Veritabani {
                             "\t   5- Kimlik No Ile Kayit Silme \t\n" +
                             "\t   A- ANAMENU\n" +
                             "\t   Q- CIKIS");
-
-                // "1":
+            secim = scan.nextLine().toLowerCase();
+            switch (secim) {
+                case "1":
                     ogrenciListeYazdir();
-
-                // "2": // Soyisimden Ogrenci Bulma
+                    break;
+                case "2": // Soyisimden Ogrenci Bulma
                     soyisimdenOgrenciBulma();
-
-                // "3": // Sinif ve Sube Ile Ogrenci Bulma
+                    break;
+                case "3": // Sinif ve Sube Ile Ogrenci Bulma
                     sinifVeSubeIleOgrenciBulma();
-
-                // "4": // Bilgilerini Girerek Ogrenci Ekleme
+                    break;
+                case "4": // Bilgilerini Girerek Ogrenci Ekleme
                     ogrenciEkle();
-
-                // "5":
+                    break;
+                case "5":
                     tcNoIleOgrenciSilme();
-
-                // "A" VEYA "a":
+                    break;
+                case "a":
                     Helper.anaMenu();
-
-                // "Q" VEYA "q":
+                    break;
+                case "q":
                     Helper.projeDurdur();
-
+                    break;
+                default:
                     //   HATALI TERCİH DURUMUNDA TEKRAR SEÇİM İSTENMELİ
                     System.out.println("Lutfen gecerli tercih yapiniz:");
-
-
-
-        }
+                    break;
+            }
+        } while (!secim.equalsIgnoreCase("q"));
 
         // ÇIKIŞ YAPILIRSA
         Helper.projeDurdur();
@@ -82,25 +85,58 @@ public class OgrenciManager extends Veritabani {
 
     // TODO ogrenciEkle() methodunu doldurunuz
     private static void ogrenciEkle() {
-
         // burayi doldurduktan sonra asagidaki kodu siliniz (sout u)
-        System.out.println("KONSOLDAN ALDIĞINIZ BİLGİLERLE MAP'E ÖĞRENCİ EKLEYİNİZ ");
-
-
-
+        System.out.print("Öğrenci kimlik no: ");
+        String TcNo = scan.nextLine();
+        System.out.print("Öğrenci Adı: ");
+        String ad = scan.nextLine();
+        System.out.print("Öğrenci Soyadı: ");
+        String soyad = scan.nextLine();
+        System.out.print("Doğum yılı: ");
+        String dYili = scan.nextLine();
+        System.out.print("Okul No: ");
+        String okulNo = scan.nextLine();
+        System.out.print("Sınıfı: ");
+        String sinif = scan.nextLine();
+        System.out.print("Şubesi: ");
+        String sube = scan.nextLine();
+        Veritabani.ogrenciMap.put(TcNo, ad + ", " + soyad + ", " + dYili + ", " + okulNo + ", " + sinif + ", " + sube);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
 
     // TODO sinifVeSubeIleOgrenciBulma() methodunu doldurunuz
-    // OgretmenManager classindaki branstanOgretmenBulma() methodundan faydalanabilirsiniz
+    // OgretmenManager classindaki branstanOgretmenBulma() methodundan faydalanabilirsiniz.
     private static void sinifVeSubeIleOgrenciBulma() throws InterruptedException {
-
         // burayi doldurduktan sonra asagidaki kodu siliniz (sout u)
-        System.out.println("///// KONSOLDAN ALDIGINIZ BILGILERLE, ARANAN OGEYI (SINIF VE SUBE) ICEREN MAP ELEMANLARINI LISTELEYINIZ ////////");
+        System.out.println("Aradiginiz Öğrencinin Sınıfını Giriniz:");
+        String istenenSinif = scan.nextLine();
+        System.out.println("Aradiginiz Öğrencinin Şubesini Giriniz:");
+        String istenenSube = scan.nextLine();
 
+        System.out.print(istenenSinif + istenenSube + " Öğrenciler Listeleniyor...");
+        for (int i = 0; i < 20; i++) {
+            Thread.sleep(100);
+            System.out.print(">");
+        }
 
+        Set<Map.Entry<String, String>> ogrenciEntrySet = Veritabani.ogrenciMap.entrySet();
+        System.out.println(
+                "\n============= TECHNO STUDY BOOTCAMP =============\n" +
+                        "============BRANS ILE ÖĞRENCİ ARAMA ============\n" +
+                        "TcNo : Isim , Soyisim , Doğum Yılı, OkulNo, Sınıfı, Şube");
 
+        // Daha düzgün bi görünüm için printf veya String.format kullanılabilir... İsteğe bağlı
+        for (Map.Entry<String, String> each : ogrenciEntrySet) {
+            String eachKey = each.getKey();
+            String eachValue = each.getValue();
+            String[] eachValuarr = eachValue.split(", ");
+            if (istenenSinif.equalsIgnoreCase(eachValuarr[4])) {
+                if (istenenSube.equalsIgnoreCase(eachValuarr[5])){
+                    System.out.println(eachKey + " : " + eachValue + " | ");
+                }
+            }
+        }
 
     }
 
@@ -109,25 +145,39 @@ public class OgrenciManager extends Veritabani {
     // TODO soyisimdenOgrenciBulma() methodunu doldurunuz
 
     private static void soyisimdenOgrenciBulma() throws InterruptedException {
+        System.out.println("Aradiginiz Öğrencinin Soyadını Giriniz:");
+        String istenenSoyad = scan.nextLine();
 
-        // burayi doldurduktan sonra asagidaki kodu siliniz (sout u)
-        System.out.println("///// KONSOLDAN ALDIGINIZ BILGILERLE (SOYISIM), ARANAN OGEYI ICEREN MAP ELEMANLARINI LISTELEYINIZ ////////");
+        System.out.print(istenenSoyad + " Öğrenciler Listeleniyor...");
+        for (int i = 0; i < 20; i++) {
+            Thread.sleep(100);
+            System.out.print(">");
+        }
 
+        Set<Map.Entry<String, String>> ogrenciEntrySet = Veritabani.ogrenciMap.entrySet();
+        System.out.println(
+                "\n============= TECHNO STUDY BOOTCAMP =============\n" +
+                        "============SOYİSİM ILE ÖĞRENCİ ARAMA ============\n" +
+                        "TcNo : Isim , Soyisim , Doğum Yılı, OkulNo, Sınıfı, Şube");
 
+        // Daha düzgün bi görünüm için printf veya String.format kullanılabilir... İsteğe bağlı
+        for (Map.Entry<String, String> each : ogrenciEntrySet) {
+            String eachKey = each.getKey();
+            String eachValue = each.getValue();
 
-
+            String[] eachValuarr = eachValue.split(", ");
+            if (istenenSoyad.equalsIgnoreCase(eachValuarr[1])) {
+                System.out.println(eachKey + " : " + eachValue + " | ");
+            }
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
 
     // TODO ogrenciListeYazdir() methodunu doldurunuz
-    private static void ogrenciListeYazdir() throws InterruptedException {
-
-        // burayi doldurduktan sonra asagidaki kodu siliniz (sout u)
-        System.out.println("/////VERITABANI SINIFINDAKI MAP'TE BULUNAN OGRENCILERIN LISTESINI YAZDIRINIZ///////// ");
-
-
-
-
+    private static void ogrenciListeYazdir(){
+        for (Map.Entry<String, String> each :Veritabani.ogrenciMap.entrySet()){
+            System.out.println(each.getKey() + " : " + each.getValue());
+        }
     }
 }

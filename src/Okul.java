@@ -12,6 +12,6 @@ public class Okul {
     // Boş constructor'ı private olarak oluşturuyoruz ki,
     // Başka bir sınıf tarafından, Okul'dan bir nesne oluşturulamasın... new lenemesin...
     private Okul() {
-
     }
+
 }
