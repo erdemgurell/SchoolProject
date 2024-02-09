@@ -49,9 +49,10 @@ public class Helper {
             Thread.sleep(100);
             System.out.print(">");
         }
-        System.out.println(Okul.okulIsmi);
-        System.out.println(Okul.adres);
-        System.out.println(Okul.telefon);
+        System.out.println();
+        System.out.println("Okul ismi: " + Okul.okulIsmi);
+        System.out.println("Adres: " + Okul.adres);
+        System.out.println("Telefon: " + Okul.telefon);
 
 
     }
