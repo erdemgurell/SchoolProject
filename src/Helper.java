@@ -49,7 +49,9 @@ public class Helper {
             Thread.sleep(100);
             System.out.print(">");
         }
-        System.out.print("//// OKUL BILGILERINI YAZDIRACAK BIR METOD OLUSTURUNUZ ////////");
+        System.out.println(Okul.okulIsmi);
+        System.out.println(Okul.adres);
+        System.out.println(Okul.telefon);
 
 
     }
